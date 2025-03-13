@@ -1,0 +1,292 @@
+@import 'reset';
+@import './mixin/RWD';
+
+$avin-green: #67c23a;
+$text: #FFF;
+$deep-text: #000;
+$background: #333;
+
+
+
+$border-width: 3px;
+$border-color-top: #3498db;
+$border-color-middle: #e74c3c;
+$border-color-bottom: #f9c922;
+$background-color: #222222;
+$transition-time: 0.7s;
+$transition-delay: 0.3s;
+$ease-out: ease-out;
+$animation-speed-fast: 1.5s;
+$animation-speed-medium: 2s;
+$animation-speed-slow: 3s;
+
+$border-color-1: #4e73df;
+$border-color-2: #36b9cc;
+$border-color-3: #f6c23e;
+
+$btn-background: #3593ff;
+$btn-border: #ccc;
+$btn-sun: #ff9900;
+
+
+
+html,body{
+  font-family: "Helvetica", "Arial","LiHei Pro","黑體-繁","微軟正黑體", sans-serif;
+  width: 100%;
+  height: 100%;
+  background: $background;
+  overflow-x: hidden;
+  visibility: hidden;
+}
+
+// 禁止選擇
+.user-select {
+  user-select:none; // standard syntax
+  -webkit-user-select:none; // for Chrome、Safari
+  -moz-user-select:none;  // for Mozilla、Firefox
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  label {
+    display: block;
+    padding-bottom: 3px;
+  }
+  button {
+    transition: all 0.2s;
+  }
+}
+
+// 彈出選擇表
+.btn-category {
+  width: 100px;
+  font-weight: bold;
+  font-size: 1.1em;
+  border-width: 3px;
+  text-wrap: nowrap;
+  overflow: hidden;
+  margin: 0 auto;
+  &:hover, &.active {
+    background: $btn-background;
+    border-color: $btn-border;
+  }
+  img {
+    width: 85%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 5px;
+  }
+}
+.custom-swal-width {
+  width: 95%;  // 預設 95% 適用手機
+  max-width: 600px; //限制最大寬度
+
+  @media (min-width: 768px) { //平板
+    .custom-swal-width {
+        width: 85%;
+        max-width: 800px;
+    }
+  }
+  @media (min-width: 1024px) { // 桌機
+    .custom-swal-width {
+        width: 70%;
+        max-width: 900px;
+    }
+  }
+  .swal2-close {
+    font-size: 3em;  //X 的大小
+  }
+}
+
+// 類別選擇的大小
+#selectCategoryBtn {
+  font-weight: bold;
+  font-size: 1.1em;
+  letter-spacing: 5px;
+  overflow: hidden;
+  img {
+    display: block;
+    margin: 5px auto;
+    max-height: 170px;
+
+    @media(max-width:768px) {
+      max-height: 120px;
+    }
+    @media(max-width:414px) {
+      max-height: 80px;
+    }
+  }
+}
+
+
+// 設備清單 表格
+.table-responsive {
+  overflow-y: auto;
+
+  .table-striped {
+    thead {
+      position: sticky;
+      top: 0;
+      th{
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        // 懸浮效果
+        position: sticky;
+        top: 0px;
+        z-index: 200;
+      }
+    }
+    th, td {
+      font-weight: bold;
+      white-space: nowrap;
+      &.dt-type-date, &.dt-type-numeric {
+        text-align: center;
+      }
+    }
+    tr:hover {
+      td {
+        background: #5c5cf25c;
+        color: #FFF;
+        transition: all 0.1s;
+        &:hover {
+          background: #1f1fffc4;
+          // opacity: 0.6;
+        }
+      }
+    }
+  }
+}
+
+table tr td i {
+  font-size: 20px;
+  transition: all 0.2s;
+  &:hover{
+    color: #00DD00;
+  }
+  &.fa-times-circle-o{
+    margin-left: 0;
+    &:hover{
+      color: red;
+    }
+  }
+}
+
+
+
+
+
+// 震動按鈕使用
+@keyframes shake {
+  0% { transform: translateX(0); }
+  10% { transform: translateX(-5px); }
+  20% { transform: translateX(5px); }
+  30% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  50% { transform: translateX(-3px); }
+  60% { transform: translateX(3px); }
+  70% { transform: translateX(-1px); }
+  80% { transform: translateX(1px); }
+  90% { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+}
+
+
+// 黑暗模式
+// 定位並美化切換按鈕
+#themeToggle {
+  font-size: 40px;
+  width: 70px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border: 2px solid #ccc;
+  color: $btn-sun;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    color: $border-color-bottom;
+  }
+
+  @media(max-width:768px) {
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+  }
+  @media(max-width:414px) {
+    font-size: 22px;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+// 當處於暗黑模式時的樣式
+html[data-bs-theme="dark"] {
+  // Sweetalert2
+  .custom-swal-width {
+    background: $background;
+    .btn-category {
+      color: $text;
+    }
+  }
+
+  // 按鈕icon
+  #themeToggle {
+    background-color: #333;
+    color: #fff;
+    border-color: #fff;
+    // 變色
+    &:hover {
+      color: $border-color-1;
+    }
+  }
+}
+
+// 按鈕圓角
+#themeToggle i {
+  transition: transform 0.3s ease;
+}
+
+// 預設情況下為明亮模式，顯示太陽圖標
+html[data-bs-theme="light"] #themeIcon {
+  transform: rotate(180deg); // 可以做旋轉動畫
+}
+// 暗黑模式顯示月亮圖標
+html[data-bs-theme="dark"] #themeIcon {
+  transform: rotate(0deg);
+}
+
+// 輸入區塊隱藏按鈕
+.hide-btn{
+  height: 30px;
+  background: #ff5e3a;
+  transition: all 0.2s;
+  border-radius: 3px;
+  color: #FFF;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  user-select:none; // standard syntax
+  -webkit-user-select:none; // for Chrome、Safari
+  -moz-user-select:none;  // for Mozilla、Firefox
+
+  &:hover{
+    font-size: 20px;
+  }
+}
+
+// 畫面寬度上限增大
+@media (min-width: 1700px) {
+  body {
+    .container,.container-lg,.container-md,.container-sm,.container-xl,.container-xxl {
+      max-width:1600px;
+  }
+  }
+}

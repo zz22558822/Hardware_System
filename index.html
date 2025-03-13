@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電腦硬體設備管理系統</title>
+    <link rel="stylesheet" href="./css/dataTables.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container mt-3">
+        <h2 class="mb-4 font-weight-bold text-center user-select">電腦硬體設備管理系統</h2>
+        
+        <form id="hardwareForm">
+            <div class="row">
+                <!-- 設備類別欄位 -->
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="category">設備類別</label>
+                        <button type="button" class="btn btn-outline-primary w-100" id="selectCategoryBtn">請選擇設備類別</button>
+                        <input type="hidden" id="category" required>
+                    </div>
+                </div>
+        
+                <!-- 其餘欄位使用剩餘的 9 欄 -->
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="brand">品牌</label>
+                                <input type="text" class="form-control" id="brand" required>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="name">設備名稱</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="spec">規格</label>
+                                <input type="text" class="form-control" id="spec" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="batch">批次</label>
+                                <input type="text" class="form-control" id="batch">
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="serialNumber">序號(SN)</label>
+                                <input type="text" class="form-control" id="serialNumber" required>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="warranty">通路</label>
+                                <input type="text" class="form-control" id="warranty" required>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label for="warranty">保固(月)</label>
+                                <input type="number" class="form-control" id="warranty" required>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="price">價格</label>
+                                <input type="number" class="form-control" id="price" required>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="purchaseDate">購買日</label>
+                                <input type="date" class="form-control" id="purchaseDate" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="other">其他</label>
+                                <textarea class="form-control" id="other" rows="4" placeholder="請輸入其他內容..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <div class="form-group mt-4">
+                        <div class="row">
+                            <div class="col-6 col-md-3 offset-md-6">
+                                <button type="reset" class="btn btn-secondary fs-5 w-100 resetBTN">重置</button>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <button type="submit" class="btn btn-primary fs-5 w-100 submitBTN">儲存</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <hr class="my-4">
+        </form>
+        
+        <div class="hide-btn">▲</div>
+
+        <div class="mt-4 font-weight-bold text-center">
+            <h3 class="user-select">設備清單</h3>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>類別</th>
+                            <th>品牌</th>
+                            <th>名稱</th>
+                            <th>規格</th>
+                            <th>購買日</th>
+                            <th>過保日</th>
+                            <th>序號(SN)</th>
+                            <th>價格</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hardwareList">
+                        <!-- JavaScript 將在此動態插入數據 -->
+                        <tr>
+                            <td>1</td>
+                            <td>HDD</td>
+                            <td>SeaGate</td>
+                            <td>Exos X18</td>
+                            <td>16TB</td>
+                            <td>2025/03/06</td>
+                            <td>2030/03/06</td>
+                            <td>ST16000NM000J</td>
+                            <td>16840</td>
+                            <td>
+                                <i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('1')"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 黑暗模式按鈕 -->
+    <button id="themeToggle" class="btn btn-outline-secondary rounded-circle position-fixed bottom-0 start-0 m-4">
+        <i id="themeIcon" class="fas fa-sun"></i>
+    </button>
+
+    <!--JS載入-->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/Axios_1.5.0.js"></script>
+    <script src="js/air-datepicker.min.js"></script>
+    <script src="js/sweetalert2.all.js"></script>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/dataTables.min.js"></script>
+    <script src="js/fontawesome.js" crossorigin="anonymous"></script>
+    <script src="js/all.js"></script>
+</body>
+</html>
