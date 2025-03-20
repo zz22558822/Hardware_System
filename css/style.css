@@ -202,6 +202,10 @@ html, body {
   transition: all 0.2s;
 }
 
+div:where(.swal2-container) .swal2-html-container {
+  padding: 1em 0.5em 0.3em;
+}
+
 .btn-category {
   width: 100px;
   font-weight: bold;
@@ -220,6 +224,11 @@ html, body {
   display: block;
   margin: 0 auto;
   margin-bottom: 5px;
+}
+@media (max-width: 414px) {
+  .btn-category {
+    max-height: 90px;
+  }
 }
 
 .custom-swal-width {
@@ -288,11 +297,7 @@ html, body {
 }
 .table-responsive .table-striped tr:hover td {
   background: rgba(92, 92, 242, 0.3607843137);
-  color: #FFF;
   transition: all 0.1s;
-}
-.table-responsive .table-striped tr:hover td:hover {
-  background: rgba(31, 31, 255, 0.768627451);
 }
 
 table tr td i {
@@ -381,6 +386,10 @@ html[data-bs-theme=dark] .custom-swal-width {
 html[data-bs-theme=dark] .custom-swal-width .btn-category {
   color: #FFF;
 }
+html[data-bs-theme=dark] .custom-swal-color {
+  background: #333;
+  color: #FFF;
+}
 html[data-bs-theme=dark] #themeToggle {
   background-color: #333;
   color: #fff;
@@ -388,6 +397,9 @@ html[data-bs-theme=dark] #themeToggle {
 }
 html[data-bs-theme=dark] #themeToggle:hover {
   color: #4e73df;
+}
+html[data-bs-theme=dark] .table-responsive .table-striped tr:hover td {
+  color: #FFF;
 }
 
 #themeToggle i {

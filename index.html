@@ -2,9 +2,36 @@
 <html lang="zh-Hant-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>電腦硬體設備管理系統</title>
-    <link rel="stylesheet" href="./css/dataTables.min.css">
+
+    <!-- 這邊放上Icon -->
+    <link rel="icon" href="img/favicon.ico">
+
+    <!-- 防止瀏覽器使用快取 正常來說應該是會直接資料異動後刷新狀態200 否則從快取304 -->
+    <meta HTTP-EQUIV="Pragma" CONTENT="no-store">
+    <meta HTTP-EQUIV="Cache-Control" CONTENT="no-store">
+    <meta HTTP-EQUIV="Expires" CONTENT="0">
+
+    <meta name="author" content="chek">
+    <meta name="copyright" content="chek">
+    <meta name="generator" content="chek">
+    <meta name="description" content="電腦硬體設備管理系統">
+    <meta name="keywords" content="電腦硬體設備管理系統,Hardware System">
+
+    <meta property="og:title" content="電腦硬體設備管理系統">
+    <meta property="og:description" content="Hardware System">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="#">
+    <!-- 這邊放上Icon -->
+    <meta property="og:image" href="img/favicon.ico">
+    <!-- 這邊放上Icon -->
+    <link href="img/favicon.ico" rel="apple-touch-icon" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/datatables.bs5.min.css">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
@@ -16,24 +43,24 @@
                 <!-- 設備類別欄位 -->
                 <div class="col-md-3">
                     <div class="form-group">
-                        <label for="category">設備類別</label>
+                        <label class="user-select" for="category">設備類別</label>
                         <button type="button" class="btn btn-outline-primary w-100" id="selectCategoryBtn">請選擇設備類別</button>
                         <input type="hidden" id="category" required>
                     </div>
                 </div>
         
-                <!-- 其餘欄位使用剩餘的 9 欄 -->
+                <!-- 其餘欄位 -->
                 <div class="col-md-9">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="brand">品牌</label>
+                                <label class="user-select" for="brand">品牌</label>
                                 <input type="text" class="form-control" id="brand" required>
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
-                                <label for="name">設備名稱</label>
+                                <label class="user-select" for="name">設備名稱</label>
                                 <input type="text" class="form-control" id="name" required>
                             </div>
                         </div>
@@ -42,19 +69,19 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="spec">規格</label>
+                                <label class="user-select" for="spec">規格</label>
                                 <input type="text" class="form-control" id="spec" required>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="batch">批次</label>
+                                <label class="user-select" for="batch">批次</label>
                                 <input type="text" class="form-control" id="batch">
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="form-group">
-                                <label for="serialNumber">序號(SN)</label>
+                                <label class="user-select" for="serialNumber">序號(SN)</label>
                                 <input type="text" class="form-control" id="serialNumber" required>
                             </div>
                         </div>
@@ -63,33 +90,33 @@
                     <div class="row">
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="warranty">通路</label>
-                                <input type="text" class="form-control" id="warranty" required>
+                                <label class="user-select" for="trade">通路</label>
+                                <input type="text" class="form-control" id="trade" required>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="warranty">保固(月)</label>
-                                <input type="number" class="form-control" id="warranty" required>
+                                <label class="user-select" for="warranty">保固(月)</label>
+                                <input type="number" class="form-control" id="warranty" required min="0" max="2400">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="price">價格</label>
-                                <input type="number" class="form-control" id="price" required>
+                                <label class="user-select" for="price">價格</label>
+                                <input type="number" class="form-control" id="price" required min="0" max="9999999999">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="purchaseDate">購買日</label>
-                                <input type="date" class="form-control" id="purchaseDate" required>
+                                <label class="user-select" for="purchaseDate">購買日</label>
+                                <input type="date" class="form-control" id="purchaseDate" required min="1900-01-01" max="2400-12-31">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="other">其他</label>
+                                <label class="user-select" for="other">其他</label>
                                 <textarea class="form-control" id="other" rows="4" placeholder="請輸入其他內容..."></textarea>
                             </div>
                         </div>
@@ -124,30 +151,18 @@
                             <th>品牌</th>
                             <th>名稱</th>
                             <th>規格</th>
+                            <th>批次</th>
                             <th>購買日</th>
                             <th>過保日</th>
                             <th>序號(SN)</th>
+                            <th>通路</th>
                             <th>價格</th>
+                            <th>記錄日</th>
+                            <th>其他</th>
                             <th>操作</th>
                         </tr>
                     </thead>
-                    <tbody id="hardwareList">
-                        <!-- JavaScript 將在此動態插入數據 -->
-                        <tr>
-                            <td>1</td>
-                            <td>HDD</td>
-                            <td>SeaGate</td>
-                            <td>Exos X18</td>
-                            <td>16TB</td>
-                            <td>2025/03/06</td>
-                            <td>2030/03/06</td>
-                            <td>ST16000NM000J</td>
-                            <td>16840</td>
-                            <td>
-                                <i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow('1')"></i>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="hardwareList"></tbody>
                 </table>
             </div>
         </div>
@@ -166,7 +181,7 @@
     <script src="js/sweetalert2.all.js"></script>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/dataTables.min.js"></script>
+    <script src="js/datatables.bs5.min.js"></script>
     <script src="js/fontawesome.js" crossorigin="anonymous"></script>
     <script src="js/all.js"></script>
 </body>

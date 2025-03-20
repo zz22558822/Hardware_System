@@ -1,0 +1,61 @@
+# 80 Port 使用
+#server {
+#    listen 80;
+#    server_name 192.168.46.128;  # 替換為你的域名或 IP 地址
+#
+#    # 提供靜態文件 (index.html)
+#    location / {
+#        root /var/www/html;  # 靜態文件的根目錄
+#        index index.html;
+#    }
+#
+#    # FastAPI 路由的反向代理，將所有 /api/ 路由轉發到 FastAPI
+#    location /api/ {
+#        proxy_pass http://127.0.0.1:8000;  # 假設 FastAPI 運行在 localhost 的 8000 埠
+#        proxy_set_header Host $host;
+#        proxy_set_header X-Real-IP $remote_addr;
+#        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+#        proxy_set_header X-Forwarded-Proto $scheme;
+#    }
+#}
+
+
+
+# HTTP (80) 端口的設置，將流量重定向到 HTTPS
+server {
+    listen 80;
+    server_name 192.168.46.128;  # 替換為你的域名或 IP 地址
+
+    # 將所有流量重定向到 HTTPS
+    return 301 https://$host$request_uri;
+}
+
+# HTTPS (443) 端口的設置
+server {
+    listen 443 ssl;
+    server_name 192.168.46.128;  # 替換為你的域名或 IP 地址
+
+    # SSL 設置
+    ssl_certificate /opt/SSL/certificate.crt;  # 替換為你的證書路徑
+    ssl_certificate_key /opt/SSL/private.key;  # 替換為你的密鑰路徑
+
+    # SSL 配置（可選，你可以根據需要添加）
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers off;
+
+    # 提供靜態文件 (index.html)
+    location / {
+        root /var/www/html;  # 靜態文件的根目錄
+        index index.html;
+    }
+
+    # FastAPI 路由的反向代理，將所有 /api/ 路由轉發到 FastAPI
+    location /api/ {
+        proxy_pass http://127.0.0.1:8000;  # 假設 FastAPI 運行在 localhost 的 8000 埠
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}

@@ -58,6 +58,9 @@ html,body{
 }
 
 // 彈出選擇表
+div:where(.swal2-container) .swal2-html-container {
+  padding: 1em .5em .3em;
+}
 .btn-category {
   width: 100px;
   font-weight: bold;
@@ -75,6 +78,9 @@ html,body{
     display: block;
     margin: 0 auto;
     margin-bottom: 5px;
+  }
+  @media(max-width:414px) {
+    max-height: 90px;
   }
 }
 .custom-swal-width {
@@ -147,12 +153,11 @@ html,body{
     tr:hover {
       td {
         background: #5c5cf25c;
-        color: #FFF;
         transition: all 0.1s;
-        &:hover {
-          background: #1f1fffc4;
-          // opacity: 0.6;
-        }
+        // &:hover {
+        //   background: #1f1fffc4;
+        //   // opacity: 0.6;
+        // }
       }
     }
   }
@@ -232,6 +237,10 @@ html[data-bs-theme="dark"] {
       color: $text;
     }
   }
+  .custom-swal-color {
+    background: $background;
+    color: $text;
+  }
 
   // 按鈕icon
   #themeToggle {
@@ -241,6 +250,17 @@ html[data-bs-theme="dark"] {
     // 變色
     &:hover {
       color: $border-color-1;
+    }
+  }
+
+  // Table 字體顏色
+  .table-responsive {
+    .table-striped {
+      tr:hover {
+        td {
+          color: #FFF;
+        }
+      }
     }
   }
 }

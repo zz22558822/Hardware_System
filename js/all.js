@@ -7,30 +7,30 @@ document.getElementById('selectCategoryBtn').addEventListener('click', () => {
             <div class="d-flex flex-wrap gap-2">
                 <button class="btn btn-outline-primary btn-category" data-value="CPU"><img src="./img/零組件/CPU.png">CPU</button>
                 <button class="btn btn-outline-primary btn-category" data-value="RAM"><img src="./img/零組件/ram.png">RAM</button>
-                <button class="btn btn-outline-primary btn-category" data-value="MB"><img src="./img/零組件/mainboard.png">主機板</button>
-                <button class="btn btn-outline-primary btn-category" data-value="GPU"><img src="./img/零組件/video-card.png">顯示卡</button>
-                <button class="btn btn-outline-primary btn-category" data-value="M2SSD"><img src="./img/零組件/M.2 SSD.png">M.2 SSD</button>
-                <button class="btn btn-outline-primary btn-category" data-value="25SSD"><img src="./img/零組件/2.5 SSD.png">2.5" SSD</button>
+                <button class="btn btn-outline-primary btn-category" data-value="主機板"><img src="./img/零組件/mainboard.png">主機板</button>
+                <button class="btn btn-outline-primary btn-category" data-value="顯示卡"><img src="./img/零組件/video-card.png">顯示卡</button>
+                <button class="btn btn-outline-primary btn-category" data-value="M.2 SSD"><img src="./img/零組件/M.2 SSD.png">M.2 SSD</button>
+                <button class="btn btn-outline-primary btn-category" data-value="2.5吋 SSD"><img src="./img/零組件/2.5 SSD.png">2.5" SSD</button>
                 <button class="btn btn-outline-primary btn-category" data-value="HDD"><img src="./img/零組件/hard-disk-drive.png">HDD</button>
-                <button class="btn btn-outline-primary btn-category" data-value="POWER"><img src="./img/零組件/power-supply.png">電源</button>
-                <button class="btn btn-outline-primary btn-category" data-value="UPS"><img src="./img/周邊設備/uninterrupted-power-supply.png">UPS</button>
-                <button class="btn btn-outline-primary btn-category" data-value="FAN"><img src="./img/零組件/fan.png">塔式散熱</button>
-                <button class="btn btn-outline-primary btn-category" data-value="COOLER"><img src="./img/零組件/water-cooler.png">水冷散熱</button>
-                <button class="btn btn-outline-primary btn-category" data-value="CASE"><img src="./img/零組件/computer-case.png">機殼</button>
-                <button class="btn btn-outline-primary btn-category" data-value="NIC"><img src="./img/零組件/ethernet.png">網路卡</button>
-                <button class="btn btn-outline-primary btn-category" data-value="SOUND"><img src="./img/零組件/sound-card.png">音效卡</button>
-                <button class="btn btn-outline-primary btn-category" data-value="MOUSE"><img src="./img/周邊設備/computer-mouse 2.png">滑鼠</button>
-                <button class="btn btn-outline-primary btn-category" data-value="KEYBOARD"><img src="./img/周邊設備/keyboard.png">鍵盤</button>
-                <button class="btn btn-outline-primary btn-category" data-value="FULLHEADPHONE"><img src="./img/周邊設備/earphone.png">全罩耳機</button>
-                <button class="btn btn-outline-primary btn-category" data-value="HEADPHONE"><img src="./img/周邊設備/headphone.png">入耳耳機</button>
-                <button class="btn btn-outline-primary btn-category" data-value="SPEAKER"><img src="./img/周邊設備/speaker.png">喇叭</button>
-                <button class="btn btn-outline-primary btn-category" data-value="ROUTER"><img src="./img/網路設備/modem.png">路由器</button>
-                <button class="btn btn-outline-primary btn-category" data-value="SWITCH"><img src="./img/網路設備/network-hub.png">交換機</button>
-                <button class="btn btn-outline-primary btn-category" data-value="MONITOR"><img src="./img/周邊設備/monitor.png">螢幕</button>
-                <button class="btn btn-outline-primary btn-category" data-value="WEBCAM"><img src="./img/周邊設備/web-cam.png">視訊鏡頭</button>
-                <button class="btn btn-outline-primary btn-category" data-value="dac"><img src="./img/周邊設備/dac.png">DAC</button>
-                <button class="btn btn-outline-primary btn-category" data-value="amplifier"><img src="./img/周邊設備/amplifier.png">擴大機</button>
-                <button class="btn btn-outline-primary btn-category" data-value="other"><img src="./img/question-mark.png">其他</button>
+                <button class="btn btn-outline-primary btn-category" data-value="電源供應器"><img src="./img/零組件/power-supply.png">電源</button>
+                <button class="btn btn-outline-primary btn-category" data-value="不斷電"><img src="./img/周邊設備/uninterrupted-power-supply.png">UPS</button>
+                <button class="btn btn-outline-primary btn-category" data-value="塔式散熱器"><img src="./img/零組件/fan.png">塔式散熱</button>
+                <button class="btn btn-outline-primary btn-category" data-value="水冷散熱器"><img src="./img/零組件/water-cooler.png">水冷散熱</button>
+                <button class="btn btn-outline-primary btn-category" data-value="機殼"><img src="./img/零組件/computer-case.png">機殼</button>
+                <button class="btn btn-outline-primary btn-category" data-value="網路卡"><img src="./img/零組件/ethernet.png">網路卡</button>
+                <button class="btn btn-outline-primary btn-category" data-value="音效卡"><img src="./img/零組件/sound-card.png">音效卡</button>
+                <button class="btn btn-outline-primary btn-category" data-value="滑鼠"><img src="./img/周邊設備/computer-mouse 2.png">滑鼠</button>
+                <button class="btn btn-outline-primary btn-category" data-value="鍵盤"><img src="./img/周邊設備/keyboard.png">鍵盤</button>
+                <button class="btn btn-outline-primary btn-category" data-value="全罩耳機"><img src="./img/周邊設備/earphone.png">全罩耳機</button>
+                <button class="btn btn-outline-primary btn-category" data-value="入耳耳機"><img src="./img/周邊設備/headphone.png">入耳耳機</button>
+                <button class="btn btn-outline-primary btn-category" data-value="喇叭"><img src="./img/周邊設備/speaker.png">喇叭</button>
+                <button class="btn btn-outline-primary btn-category" data-value="路由器"><img src="./img/網路設備/modem.png">路由器</button>
+                <button class="btn btn-outline-primary btn-category" data-value="交換機"><img src="./img/網路設備/network-hub.png">交換機</button>
+                <button class="btn btn-outline-primary btn-category" data-value="螢幕"><img src="./img/周邊設備/monitor.png">螢幕</button>
+                <button class="btn btn-outline-primary btn-category" data-value="視訊鏡頭"><img src="./img/周邊設備/web-cam.png">視訊鏡頭</button>
+                <button class="btn btn-outline-primary btn-category" data-value="DAC"><img src="./img/周邊設備/dac.png">DAC</button>
+                <button class="btn btn-outline-primary btn-category" data-value="擴大機"><img src="./img/周邊設備/amplifier.png">擴大機</button>
+                <button class="btn btn-outline-primary btn-category" data-value="其他"><img src="./img/question-mark.png">其他</button>
             </div>
         `,
         showConfirmButton: false,
@@ -163,6 +163,7 @@ document.querySelector('.submitBTN').addEventListener('click', function(e) {
         setTimeout(() => {
             selectCategoryBtn.style.animation = "";
         }, 400);
+        return; // 不繼續執行，避免表單送出
     } else {
         // 恢復按鈕原本樣式
         selectCategoryBtn.classList.remove("btn-danger", "border", "border-danger");
@@ -170,13 +171,104 @@ document.querySelector('.submitBTN').addEventListener('click', function(e) {
     }
 });
 
-// 待完成實際送出表單用
+// 提交表單的實際邏輯
+function submitForm() {
+    // 取得表單中的所有值
+    let category = document.getElementById("category").value;
+    let brand = document.getElementById("brand").value;
+    let name = document.getElementById("name").value;
+    let spec = document.getElementById("spec").value;
+    let batch = document.getElementById("batch").value;
+    let serialNumber = document.getElementById("serialNumber").value;
+    let trade = document.getElementById("trade").value;
+    let warranty = document.getElementById("warranty").value;
+    let price = document.getElementById("price").value;
+    let purchaseDate = document.getElementById("purchaseDate").value;
+    let other = document.getElementById("other").value;
+
+    // 使用 AJAX 發送表單數據到後端 API
+    $.ajax({
+        url: '/api/add_hardware', // FastAPI 的 API 路徑，請確保這裡是對應的接口
+        method: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            category: category,
+            brand: brand,
+            name: name,
+            spec: spec,
+            batch: batch,
+            serialNumber: serialNumber,
+            trade: trade,
+            warranty: warranty,
+            price: price,
+            purchaseDate: purchaseDate,
+            recordTime: getNowTime(),
+            other: other
+        }),
+        success: function(response) {
+            sweetalert_OK('設備資訊已儲存！');
+
+            // 清空表單
+            let categoryInput = document.getElementById("category");
+            let selectCategoryBtn = document.getElementById("selectCategoryBtn");
+            categoryInput.value = ""; // 清除 input 的值
+            selectCategoryBtn.innerHTML = "請選擇設備類別";
+            selectCategoryBtn.classList.remove("btn-danger", "border", "border-danger");
+            selectCategoryBtn.classList.add("btn-outline-primary");
+            document.getElementById('hardwareForm').reset();
+            // 更新設備清單
+            fetchDataAndRender(); // 呼叫從後端獲取資料並重新渲染表格的函數
+        },
+        error: function(error) {
+            console.error("提交資料時出錯: ", error);
+            sweetalert_error("設備資訊儲存失敗！");
+        }
+    });
+}
+
+// 表單提交事件
 document.getElementById('hardwareForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    // 在此處理表單提交邏輯
-    // 可以將數據存儲到本地存儲或發送到後端
-    alert('設備資訊已儲存！');
+    e.preventDefault(); // 防止默認的提交行為
+
+    submitForm(); // 送出
 });
+
+
+
+// ------------------ 刪除按鈕 ------------------
+function deleteRow(id) {
+    Swal.fire({
+        title: "確定要刪除嗎？",
+        text: "刪除後將無法恢復",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "確定刪除",
+        cancelButtonText: "取消",
+        customClass: {
+            popup: 'custom-swal-color'  // 套用 CSS
+        },
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/api/delete/${id}`, { method: "DELETE" })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    sweetalert_OK("刪除成功");
+                    table.row($(`i[onclick="deleteRow(${id})"]`).parents('tr')).remove().draw();
+                } else {
+                    console.error("刪除資料時出錯: ", data.message);
+                    sweetalert_error("刪除資料時出錯", 2500);
+                }
+            })
+            .catch(error => {
+                console.error("無法連接伺服器: ", error);
+                sweetalert_error("無法連接伺服器", 2500);
+            });
+        }
+    });
+}
 
 
 
@@ -225,45 +317,70 @@ document.addEventListener("DOMContentLoaded", () => {
 // ------------------ 氣泡對話框 ------------------
 
 // sweetalert2 成功
-function sweetalert_OK(params) {
+function sweetalert_OK(params, time=1000) {
 	Swal.fire({
 		icon: 'success',
 		title: '成功',
         text: params,
         confirmButtonText: '確定',
-		// showConfirmButton: false, // 自動關閉
-		// timer: 1000
+		showConfirmButton: false, // 自動關閉
+		timer: time, // 倒數計時
+        showCloseButton: true, // 關閉按鈕
+        customClass: {
+            popup: 'custom-swal-color'  // 套用 CSS
+        },
 	})
 }
 // sweetalert2 警告
-function sweetalert_NO(params) {
+function sweetalert_NO(params, time=1000) {
 	Swal.fire({
 		icon: 'warning',
 		title: '警告',
         text: params,
         confirmButtonText: '確定',
-		// showConfirmButton: false, // 自動關閉
-		// timer: 1000
+		showConfirmButton: false, // 自動關閉
+		timer: time, // 倒數計時
+        showCloseButton: true, // 關閉按鈕
+        customClass: {
+            popup: 'custom-swal-color'  // 套用 CSS
+        },
 	})
 }
-// sweetalert2 資料異常
-function sweetalert_error(params) {
+// sweetalert2 錯誤
+function sweetalert_error(params, time=1000) {
 	Swal.fire({
 		icon: 'error',
-		title: '資料異常',
+		title: '錯誤',
         text: params,
         confirmButtonText: '確定',
-		// showConfirmButton: false, // 自動關閉
-		// timer: 1000
+		showConfirmButton: false, // 自動關閉
+		timer: time, // 倒數計時
+        showCloseButton: true, // 關閉按鈕
+        customClass: {
+            popup: 'custom-swal-color'  // 套用 CSS
+        },
 	})
 }
+
 
 // ------------------ Axios API獲取------------------
 
+function getdata() {
+    axios.get('/api/get_hardware_list')
+    .then(response => {
+        console.log(response.data);
+        // 根據獲得的數據更新前端
+    })
+    .catch(error => {
+        console.error("AJAX取得資料錯誤: ", error);
+    });
+}
+
 // ------------------ 渲染 ------------------
 
+let table;
 $(document).ready(function() {
-    $('.table').DataTable({
+    table = $('.table').DataTable({
         "paging": true,        // 啟用分頁
         "searching": true,     // 啟用搜尋
         "ordering": true,      // 啟用排序
@@ -277,15 +394,96 @@ $(document).ready(function() {
             "info": "顯示 _START_ 到 _END_ 筆，共 _TOTAL_ 筆",
             "infoEmpty": "沒有相符的數據",
             "infoFiltered": "(共 _MAX_ 筆)",
+            "emptyTable": "目前無數據，請檢查伺服器連線。",
             "paginate": {
                 "first": "⋘",
                 "last": "⋙",
                 "next": "≫",
                 "previous": "≪"
             }
+        },
+        // 隱藏相關區塊
+        "columnDefs": [
+            {
+                "targets": [0, 5, 9, 11, 12],  // 隱藏特定欄位
+                "visible": false
+            }
+        ],
+        // 匯出按鈕
+        layout: {
+            topStart: {
+                buttons: [
+                    {
+                        extend: 'pageLength',
+                        text: '顯示筆數',
+                        className: 'btn btn-primary',
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: '匯出 Excel',
+                        title: `硬體設備清單 ${getNowTime('dayTitle')}`,
+                        className: 'btn btn-success', // 綠色
+                        exportOptions: {
+                            columns: ':not(:last-child)'  // 排除最後一欄（操作欄）
+                        }
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: '匯出 CSV',
+                        title: `硬體設備清單 ${getNowTime('dayTitle')}`,
+                        className: 'btn btn-success', // 綠色
+                        bom: true, // 加入 UTF-8 BOM，防止亂碼
+                        exportOptions: {
+                            columns: ':not(:last-child)'  // 排除最後一欄（操作欄）
+                        }
+                    }
+                ]
+            }
         }
     });
 });
+
+// 手動渲染 SQL 資料的函數
+function fetchDataAndRender() {
+	// 使用 AJAX 從 FastAPI 獲取資料
+	$.ajax({
+		url: '/api/get_hardware_list',  // FastAPI 的 API 路徑
+		method: 'GET',
+		success: function(data) {
+			// 清空現有表格資料
+			table.clear();
+
+            // 將獲取的數據填入表格
+            data.forEach(function(item) {
+                table.row.add([
+                    item.id,
+                    item.category,
+                    item.brand,
+                    item.name,
+                    item.spec,
+                    item.batch,
+                    item.purchaseDate,
+                    item.warrantyDate, // 保固日期
+                    item.serialNumber, // 序號
+                    item.trade,
+                    item.price,
+                    item.recordTime,
+                    item.other,  // 其他
+                    `<i class="fa fa-times-circle-o" aria-hidden="true" onclick="deleteRow(${item.id})"></i>` // 按鈕用於刪除操作
+                ]);
+            });
+
+			// 渲染表格
+			table.draw();
+		},
+		error: function(error) {
+			console.error("AJAX取得資料錯誤: ", error);
+		}
+	});
+}
+
+// 呼叫 fetchDataAndRender 函數來手動渲染一次 SQL 資料
+fetchDataAndRender();
 
 
 
@@ -306,7 +504,7 @@ function maxText(input, limit) {
 }
 
 // 獲取當前時間格式化
-function getNowTime() {
+function getNowTime(mod = 'full') {
     const now = new Date();
 
     const year = now.getFullYear();
@@ -317,5 +515,13 @@ function getNowTime() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
 
-    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    // 判斷mod，預設為'full'，可選 full、day、dayTitle
+    switch (mod) {
+        case 'day':
+            return `${year}-${month}-${day}`;
+        case 'dayTitle':
+            return `${year}${month}${day}`;
+        default:
+            return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
 }
