@@ -14,11 +14,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # 1. 讓用戶選擇 Domain、證書效期
 echo "--------------------------------------------"
-# 讓用戶輸入目標反向代理域名
 read -p "請輸入您的目標反向代理域名 (如 IP 或 example.com): " DOMAIN
 PROXY_URL="https://$DOMAIN"
 
-# 讓用戶輸入 SSL 證書的有效期限
 read -p "請輸入 SSL 證書的有效天數 (默認為 36499): " days
 if [[ ! "$days" =~ ^[1-9][0-9]*$ ]] || ((days < 1 || days > 36500)); then
     echo "無效的天數，將使用默認值 36499 天。"
@@ -38,7 +36,7 @@ echo "--------------------------------------------"
 # 安裝 Nginx
 sudo apt install -y nginx
 
-# Nginx 開機自動啟動
+# 啟動 Nginx 並設為開機自動啟動
 sudo systemctl start nginx
 sudo systemctl enable nginx
 
@@ -52,20 +50,33 @@ sudo chmod 644 /opt/SSL/certificate.crt
 
 # 安裝 curl
 sudo apt install curl unzip -y
-
-# 安裝 Python
-sudo apt install python3 python3-pip -y
-
 # 安裝 SQLite 
 # sudo apt install sqlite3 libsqlite3-dev
 sudo apt install sqlitebrowser -y
 
-# 安裝 FastAPI、uvicorn
-sudo apt install uvicorn gunicorn -y
-sudo -u "$ORIGINAL_USER" bash -c "pip install --break-system-packages python-dateutil fastapi" # 使用原生使用者安裝
-# pip install --break-system-packages python-dateutil 
-# pip install --break-system-packages fastapi
+# 安裝 Python
+sudo apt install python3 python3-pip -y
 
+# 因相依問題須手動安裝 python3-venv_3.12.3-0ubuntu2_amd64
+sudo apt install python3.12-venv -y
+sudo wget http://launchpadlibrarian.net/742881812/python3-venv_3.12.3-0ubuntu2_amd64.deb
+sudo dpkg -i python3-venv_3.12.3-0ubuntu2_amd64.deb
+
+
+
+# 4. 建立 Python 虛擬環境
+echo "--------------------------------------------"
+echo "--->>> 設置 Python 虛擬環境..."
+echo "--------------------------------------------"
+
+sudo -u "$ORIGINAL_USER" bash -c "
+cd /home/$ORIGINAL_USER
+python3 -m venv VM
+source VM/bin/activate
+pip install --upgrade pip
+pip install python-dateutil fastapi uvicorn gunicorn
+deactivate
+"
 
 # 5. 下載 Hardware System
 echo "--------------------------------------------"
@@ -74,17 +85,14 @@ echo "--------------------------------------------"
 sudo wget -O "$SCRIPT_DIR/FastAPI.zip" $(curl -s https://api.github.com/repos/zz22558822/Hardware_System/releases/latest | grep "browser_download_url" | grep ".zip" | cut -d '"' -f 4)
 sudo chmod -R 777 "$SCRIPT_DIR/FastAPI.zip"
 
-
-# 6. 解壓縮覆蓋檔案
+# 6. 解壓縮並設置專案
 echo "--------------------------------------------"
 echo "--->>> 解壓縮 Hardware System 中..."
 echo "--------------------------------------------"
-# 建立專案資料夾
-mkdir /home/$ORIGINAL_USER/FastAPI
+mkdir -p /home/$ORIGINAL_USER/FastAPI
 sudo unzip -o "$SCRIPT_DIR/FastAPI.zip" -d "/home/$ORIGINAL_USER/FastAPI"
 sudo chmod -R 777 "/home/$ORIGINAL_USER/FastAPI"
 sudo rm -f "$SCRIPT_DIR/FastAPI.zip"
-
 
 # 7. 檔案覆蓋
 echo "--------------------------------------------"
@@ -95,7 +103,6 @@ if [ -d "/home/$ORIGINAL_USER/FastAPI" ]; then
     sudo cp -r "/home/$ORIGINAL_USER/FastAPI/css" "/var/www/html/css"
     sudo cp -r "/home/$ORIGINAL_USER/FastAPI/js" "/var/www/html/js"
     sudo cp -r "/home/$ORIGINAL_USER/FastAPI/img" "/var/www/html/img"
-    # 設定資料夾環境變數
     export PYTHONPATH=$PYTHONPATH:/home/$ORIGINAL_USER/FastAPI/SQL
 else
     echo "--------------------------------------------"
@@ -104,14 +111,11 @@ else
     exit 1
 fi
 
-
 # 8. 設定反向代理
 echo "--------------------------------------------"
 echo "--->>> 設定反向代理..."
 echo "--------------------------------------------"
-# 配置 Nginx
 sudo tee /etc/nginx/sites-available/FastAPI <<EOF
-# HTTP (80) 端口的設置，將流量重定向到 HTTPS
 server {
     listen 80;
     server_name $DOMAIN;  # 替換為你的域名或 IP 地址
@@ -178,8 +182,7 @@ sudo nginx -t
 sudo systemctl restart nginx
 
 
-
-# 9. CORS 設定
+# 9. 更新 CORS 設定
 echo "--------------------------------------------"
 echo "--->>> 更新 CORS 設定..."
 echo "--------------------------------------------"
@@ -197,16 +200,17 @@ fi
 
 
 
-
 echo -e "\\n-----------------------------\\n"
 echo "各檔案位置"
+echo "Python 虛擬環境: /home/$ORIGINAL_USER/VM"
 echo "Nginx 設定檔: /etc/nginx/sites-available/FastAPI"
 echo "Hardware System: /home/$ORIGINAL_USER/FastAPI"
 echo "SSL證書: /opt/SSL"
 echo -e "\\n-----------------------------\\n"
-echo "後端擇一使用以下命令運行"
-echo "uvicorn main:app --reload"
-echo "gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app"
+echo "後端使用以下命令運行"
+echo "啟動虛擬環境: source /home/$ORIGINAL_USER/VM/bin/activate"
+echo "運行 FastAPI(擇一): uvicorn main:app --reload"
+echo "                    gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app"
 echo
 echo "提示: 需切換至 FastAPI/SQL/  或者使用下列環境變數(會影響DB位置)"
 echo "export PYTHONPATH=\$PYTHONPATH:/home/$ORIGINAL_USER/FastAPI/SQL"
