@@ -62,7 +62,9 @@ sudo apt install sqlitebrowser -y
 
 # 安裝 FastAPI、uvicorn
 sudo apt install uvicorn gunicorn -y
-pip install --break-system-packages python-dateutil
+sudo -u "$ORIGINAL_USER" bash -c "pip install --break-system-packages python-dateutil fastapi" # 使用原生使用者安裝
+# pip install --break-system-packages python-dateutil 
+# pip install --break-system-packages fastapi
 
 
 # 5. 下載 Hardware System
@@ -93,7 +95,8 @@ if [ -d "/home/$ORIGINAL_USER/FastAPI" ]; then
     sudo cp -r "/home/$ORIGINAL_USER/FastAPI/css" "/var/www/html/css"
     sudo cp -r "/home/$ORIGINAL_USER/FastAPI/js" "/var/www/html/js"
     sudo cp -r "/home/$ORIGINAL_USER/FastAPI/img" "/var/www/html/img"
-    sudo cp -r "/home/$ORIGINAL_USER/FastAPI/SQL/FastAPI" "/etc/nginx/sites-available/FastAPI"
+    # 設定資料夾環境變數
+    export PYTHONPATH=$PYTHONPATH:/home/$ORIGINAL_USER/FastAPI/SQL
 else
     echo "--------------------------------------------"
     echo "--->>> 錯誤：找不到 'FastAPI' 資料夾。請確認腳本所在目錄結構正確。"
@@ -123,15 +126,15 @@ server {
     server_name $DOMAIN;  # 替換為你的域名或 IP 地址
 
     # SSL 設置
-    ssl_certificate /opt/SSL/certificate.crt;  # 替換為你的證書路徑
-    ssl_certificate_key /opt/SSL/private.key;  # 替換為你的密鑰路徑
+    ssl_certificate /opt/SSL/certificate.crt;  # 證書路徑
+    ssl_certificate_key /opt/SSL/private.key;  # 密鑰路徑
 
-    # SSL 配置（可選，你可以根據需要添加）
+    # SSL 配置
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
     ssl_prefer_server_ciphers off;
 
-    # 提供靜態文件 (index.html)
+    # 提供靜態文件
     location / {
         root /var/www/html;  # 靜態文件的根目錄
         index index.html;
@@ -144,6 +147,16 @@ server {
         proxy_set_header X-Real-IP \$remote_addr;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto \$scheme;
+
+        # CORS 設置
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Allow-Methods "GET, POST, OPTIONS, PUT, DELETE";
+        add_header Access-Control-Allow-Headers "Content-Type, Authorization";
+
+        # 預檢請求 OPTIONS 直接返回成功
+        if (\$request_method = OPTIONS) {
+            return 204;
+        }
     }
 }
 EOF
@@ -166,19 +179,37 @@ sudo systemctl restart nginx
 
 
 
+# 9. CORS 設定
+echo "--------------------------------------------"
+echo "--->>> 更新 CORS 設定..."
+echo "--------------------------------------------"
+
+MAIN_PY_PATH="/home/$ORIGINAL_USER/FastAPI/SQL/main.py"
+
+if [ -f "$MAIN_PY_PATH" ]; then
+    sudo sed -i "s|\"http://你的Domain\"|\"http://$DOMAIN\"|g" "$MAIN_PY_PATH"
+    sudo sed -i "s|\"https://你的Domain\"|\"https://$DOMAIN\"|g" "$MAIN_PY_PATH"
+    echo "CORS 設定已更新完成"
+else
+    echo "錯誤：找不到 main.py，請確認檔案已正確下載並放置到 $MAIN_PY_PATH"
+    exit 1
+fi
 
 
 
 
-
-
-
-
-
-
-
-
-
+echo -e "\\n-----------------------------\\n"
+echo "各檔案位置"
+echo "Nginx 設定檔: /etc/nginx/sites-available/FastAPI"
+echo "Hardware System: /home/$ORIGINAL_USER/FastAPI/"
+echo "SSL證書: /opt/SSL"
+echo -e "\\n-----------------------------\\n"
+echo "後端擇一使用以下命令運行"
+echo "uvicorn main:app --reload"
+echo "gunicorn -w 4 -k uvicorn.workers.UvicornWorker main:app"
+echo
+echo "提示: 需切換至 FastAPI/SQL/  或者使用下列環境變數 "
+echo "export PYTHONPATH=\$PYTHONPATH:/home/$ORIGINAL_USER/FastAPI/SQL"
 echo -e "\\n-----------------------------\\n"
 echo "Hardware System 安裝完成"
 echo "使用Nginx + FastAPI + uvicorn + gunicorn"

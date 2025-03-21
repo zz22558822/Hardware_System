@@ -79,9 +79,6 @@ div:where(.swal2-container) .swal2-html-container {
     margin: 0 auto;
     margin-bottom: 5px;
   }
-  @media(max-width:414px) {
-    max-height: 90px;
-  }
 }
 .custom-swal-width {
   width: 95%;  // 預設 95% 適用手機

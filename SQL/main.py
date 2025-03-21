@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional
 import sqlite3
@@ -7,6 +8,22 @@ from dateutil.relativedelta import relativedelta
 
 # 初始化 FastAPI 應用
 app = FastAPI()
+
+# 設定 CORS 允許跨域請求
+origins = [
+    "http://你的Domain",
+    "https://你的Domain",
+    "http://localhost",
+    "http://127.0.0.1",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],  # 允許所有 HTTP 方法
+    allow_headers=["*"],  # 允許所有標頭
+)
 
 # 定義硬體設備資料結構
 class Hardware(BaseModel):
